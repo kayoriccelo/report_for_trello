@@ -42,7 +42,6 @@ def create_report(start_date, end_date ,data, name_group_reference):
             except Exception as err:
                 print(f'Error while deleting file: {err}')
             
-            
     for value_field_reference_item, lists in groups.items():
         file_name = f'{path_reports}/{value_field_reference_item.lower()}.pdf'
         pdf = SimpleDocTemplate(file_name, pagesize=letter)

@@ -94,6 +94,5 @@ def open_pdfs(path):
             
                 break
 
-            
     except Exception as err:
         messagebox.showerror("Erro", f"Não foi possível abrir o arquivo PDF: {err}")
