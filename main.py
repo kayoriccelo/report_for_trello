@@ -109,7 +109,7 @@ entry_name_list_in_program = tk.Entry(janela, font=('Verdana', 12), width=30)
 entry_name_list_in_program.insert(0, 'ANDAMENTO')
 entry_name_list_in_program.pack(pady=10)
 
-label_name_group_reference = tk.Label(janela, text="Agroupamento:", font=('Verdana', 16), bg='#f0f0f0')
+label_name_group_reference = tk.Label(janela, text="Agrupamento:", font=('Verdana', 16), bg='#f0f0f0')
 label_name_group_reference.pack()
 entry_name_group_reference = tk.Entry(janela, font=('Verdana', 12), width=30)
 entry_name_group_reference.insert(0, 'Desenvolvimento')
