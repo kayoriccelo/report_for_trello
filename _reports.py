@@ -93,7 +93,7 @@ def create_report(start_date, end_date ,data, name_group_reference):
                 
                 story.append(Paragraph(f"""
                     <b>Tempo de programação:</b> {card_list.get('time_in_program', '--')}&nbsp;&nbsp;&nbsp;
-                    <b>Tempo total:</b> {card_list.get('time_in_progress', '--')}                   
+                    <b>Tempo total:</b> {card_list.get('total_time', '--')}                   
                 """, style_data))
                 
                 story.append(Spacer(1, 5))
