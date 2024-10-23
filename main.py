@@ -82,8 +82,20 @@ def generate_report():
     
     open_pdfs('reports')
     
+    
+def toggle_fullscreen(event=None):
+    janela.attributes("-fullscreen", not janela.attributes("-fullscreen"))
+
+def exit_fullscreen(event=None):
+    janela.attributes("-fullscreen", False)
+    
 
 janela = tk.Tk()
+
+toggle_fullscreen()
+
+janela.bind("<Escape>", exit_fullscreen)
+
 janela.title("Gerador de Relatórios do Trello")
 janela.geometry("600x600")
 janela.configure(bg='#f0f0f0')
