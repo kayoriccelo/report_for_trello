@@ -31,17 +31,17 @@ def load_data():
     
     lists = load_lists(LISTS, name_list_in_program)
     
-    current_dir = os.path.dirname(os.path.abspath(__file__))
+    # current_dir = os.path.dirname(os.path.abspath(__file__))
     
-    if 'dist' in current_dir:
-        path_exe = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+    # if 'dist' in current_dir:
+    #     path_exe = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
         
-    else:
-        path_exe = os.path.abspath(os.path.join(os.path.dirname(__file__)))
+    # else:
+    #     path_exe = os.path.abspath(os.path.join(os.path.dirname(__file__)))
 
-    path_reports = os.path.join(path_exe, 'data')
+    # path_reports = os.path.join(path_exe, 'data')
     
-    save_json_data(lists, f'{path_reports}/lists.json')
+    save_json_data(lists, f'data/lists.json')
     
     messagebox.showinfo("Info", "Dados carregados com sucesso.")
     
@@ -84,18 +84,18 @@ def generate_report():
         
         return
     
-    current_dir = os.path.dirname(os.path.abspath(__file__))
+    # current_dir = os.path.dirname(os.path.abspath(__file__))
     
-    if 'dist' in current_dir:
-        path_exe = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+    # if 'dist' in current_dir:
+    #     path_exe = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
         
-    else:
-        path_exe = os.path.abspath(os.path.join(os.path.dirname(__file__)))
+    # else:
+    #     path_exe = os.path.abspath(os.path.join(os.path.dirname(__file__)))
         
-    path_reports = os.path.join(path_exe, 'reports')
-    path_data_json = os.path.join(path_exe, 'data')
+    # path_reports = os.path.join(path_exe, 'reports')
+    # path_data_json = os.path.join(path_exe, 'data')
     
-    lists = load_json_data(f'{path_data_json}/lists.json')
+    lists = load_json_data(f'data/lists.json')
     
     if not lists:
         messagebox.showerror("Error", "Nenhuma informação encontrada.")
@@ -104,7 +104,7 @@ def generate_report():
     
     create_report(start_date, end_date, lists, name_group_reference)
     
-    open_pdfs(path_reports)
+    open_pdfs('reports')
     
     messagebox.showinfo("Info", "Relatórios gerados com sucesso.")
     

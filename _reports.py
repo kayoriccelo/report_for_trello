@@ -28,13 +28,13 @@ def create_report(start_date, end_date ,data, name_group_reference):
                     
                 groups[value_field_reference]['lists'][name].append(card)
             
-    path_exe = os.path.dirname(os.path.abspath(__file__))
+    # path_exe = os.path.dirname(os.path.abspath(__file__))
 
-    path_reports = os.path.join(path_exe, 'reports')
+    # path_reports = os.path.join(path_exe, 'reports')
 
-    for arquivo in os.listdir(path_reports):
+    for arquivo in os.listdir('reports'):
         if arquivo.endswith('.pdf'):
-            file_path = os.path.join(path_reports, arquivo)
+            file_path = os.path.join('reports', arquivo)
             
             try:
                 os.remove(file_path)
@@ -43,7 +43,7 @@ def create_report(start_date, end_date ,data, name_group_reference):
                 print(f'Error while deleting file: {err}')
             
     for value_field_reference_item, lists in groups.items():
-        file_name = f'{path_reports}/{value_field_reference_item.lower()}.pdf'
+        file_name = f'reports/{value_field_reference_item.lower()}.pdf'
         pdf = SimpleDocTemplate(file_name, pagesize=letter)
         story = []
 
