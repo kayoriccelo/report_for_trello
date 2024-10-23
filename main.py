@@ -1,4 +1,5 @@
 from datetime import datetime
+import os
 import tkinter as tk
 from tkinter import messagebox
 
@@ -30,7 +31,13 @@ def load_data():
     
     lists = load_lists(LISTS, name_list_in_program)
     
-    save_json_data(lists, 'data/lists.json')
+    path_exe = os.path.dirname(os.path.abspath(__file__))
+
+    path_reports = os.path.join(path_exe, 'data')
+    
+    save_json_data(lists, f'{path_reports}/lists.json')
+    
+    messagebox.showinfo("Info", "Dados carregados com sucesso.")
     
 
 def generate_report():
@@ -71,7 +78,11 @@ def generate_report():
         
         return
     
-    lists = load_json_data('data/lists.json')
+    path_exe = os.path.dirname(os.path.abspath(__file__))
+
+    path_reports = os.path.join(path_exe, 'data')
+    
+    lists = load_json_data(path_reports)
     
     if not lists:
         messagebox.showerror("Error", "Nenhuma informação encontrada.")
@@ -81,6 +92,8 @@ def generate_report():
     create_report(start_date, end_date, lists, name_group_reference)
     
     open_pdfs('reports')
+    
+    messagebox.showinfo("Info", "Relatórios gerados com sucesso.")
     
     
 def toggle_fullscreen(event=None):
