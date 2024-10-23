@@ -1,4 +1,5 @@
 from datetime import datetime
+import os
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Table, TableStyle, Spacer
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
@@ -26,6 +27,17 @@ def create_report(start_date, end_date ,data, name_group_reference):
                     groups[value_field_reference]['lists'][name] = []
                     
                 groups[value_field_reference]['lists'][name].append(card)
+            
+    for arquivo in os.listdir('reports/'):
+        if arquivo.endswith('.pdf'):
+            file_path = os.path.join('reports/', arquivo)
+            
+            try:
+                os.remove(file_path)
+                
+            except Exception as err:
+                print(f'Error while deleting file: {err}')
+            
             
     for value_field_reference_item, lists in groups.items():
         file_name = f'reports/{value_field_reference_item.lower()}.pdf'
