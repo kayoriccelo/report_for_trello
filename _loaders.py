@@ -123,7 +123,7 @@ def get_time_in_progress(movements):
         return format_timedelta_display(timedelta())
     
     first_movement = movements[0]
-    last_movement = movements[len(movements) - 1]
+    last_movement = movements[-1]
     date_first_movement = datetime.strptime(first_movement["date"], '%Y-%m-%dT%H:%M:%S.%f%z')
     date_last_movement = datetime.strptime(last_movement["date"], '%Y-%m-%dT%H:%M:%S.%f%z')
         
