@@ -20,10 +20,22 @@ LISTS = [
 ]
 
 
+def load_data():
+    name_list_in_program = entry_name_list_in_program.get()
+    
+    if not name_list_in_program:
+        messagebox.showerror("Error", "Lista em programação não informada.")
+        
+        return
+    
+    lists = load_lists(LISTS, name_list_in_program)
+    
+    save_json_data(lists, 'data/lists.json')
+    
+
 def generate_report():
     start_date = entry_start_date.get()
     end_date = entry_end_date.get()
-    name_list_in_program = entry_name_list_in_program.get()
     name_group_reference = entry_name_group_reference.get()
         
     if not start_date:
@@ -53,22 +65,18 @@ def generate_report():
             messagebox.showerror('Error', f'Data do fim com formato inválido, DD/MM/YYYY.')
             
             return
-            
-    if not name_list_in_program:
-        messagebox.showerror("Error", "Lista em programação não informada.")
-        
-        return
     
     if not name_group_reference:
         messagebox.showerror("Error", "Agrupamento não informado.")
         
         return
     
-    # lists = load_lists(LISTS, name_list_in_program)
-    
     lists = load_json_data('data/lists.json')
-
-    save_json_data(lists, 'data/lists.json')
+    
+    if not lists:
+        messagebox.showerror("Error", "Nenhuma informação encontrada.")
+        
+        return
     
     create_report(start_date, end_date, lists, name_group_reference)
     
@@ -107,7 +115,13 @@ entry_name_group_reference = tk.Entry(janela, font=('Verdana', 12), width=30)
 entry_name_group_reference.insert(0, 'Desenvolvimento')
 entry_name_group_reference.pack(pady=10)
 
-botao = tk.Button(janela, text="Print", command=generate_report)
-botao.pack()
+frame = tk.Frame(janela)
+frame.pack()
+
+button_print = tk.Button(frame, text="Carregar", command=load_data)
+button_print.grid(row=0, column=0)
+
+button_load = tk.Button(frame, text="Imprimir", command=generate_report)
+button_load.grid(row=0, column=1)
 
 janela.mainloop()
