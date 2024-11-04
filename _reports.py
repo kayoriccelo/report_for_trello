@@ -1,4 +1,3 @@
-from datetime import datetime
 import os
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Table, TableStyle, Spacer
 from reportlab.lib import colors
@@ -28,10 +27,6 @@ def create_report(start_date, end_date ,data, name_group_reference):
                     
                 groups[value_field_reference]['lists'][name].append(card)
             
-    # path_exe = os.path.dirname(os.path.abspath(__file__))
-
-    # path_reports = os.path.join(path_exe, 'reports')
-
     for arquivo in os.listdir('reports'):
         if arquivo.endswith('.pdf'):
             file_path = os.path.join('reports', arquivo)
@@ -101,15 +96,16 @@ def create_report(start_date, end_date ,data, name_group_reference):
                 
                 story.append(Spacer(1, 5))
 
-                table_headers = ['Data', 'Origem', 'Destino']
+                table_headers = ['Data', 'Origem', 'Destino', 'Tempo']
                 table_data = [table_headers]
 
-                for movimento in card_list['movements']:
-                    date = convert_string_to_date(movimento.get('date', '--'))
-                    origin = movimento.get('origin', '--')
-                    destiny = movimento.get('destiny', '--')
+                for movement in card_list['movements']:
+                    date = movement.get('date', '--')
+                    origin = movement.get('origin', '--')
+                    destiny = movement.get('destiny', '--')
+                    time_in_list = movement.get('time_in_list', '--')
                     
-                    table_data.append([date, origin, destiny])
+                    table_data.append([date, origin, destiny, time_in_list])
 
                 table_movements = Table(table_data, colWidths=[pdf.width / len(table_headers)] * len(table_headers))
 
