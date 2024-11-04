@@ -2,7 +2,7 @@ import os
 import platform
 import subprocess
 import json
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from tkinter import messagebox
 
 
@@ -29,8 +29,17 @@ def format_timedelta_display(value):
     
     
 def calculate_working_hours(start, end):
-    work_start = start.replace(hour=8, minute=0, second=0, microsecond=0)
-    work_end = start.replace(hour=18, minute=0, second=0, microsecond=0)
+    if start.tzinfo is None:
+        start = start.replace(tzinfo=timezone.utc)
+        
+    if end.tzinfo is None:
+        end = end.replace(tzinfo=timezone.utc)
+
+    work_start = start
+    work_start = work_start.replace(hour=8, minute=0, second=0, microsecond=0)
+    
+    work_end = end
+    work_end = work_end.replace(hour=18, minute=0, second=0, microsecond=0)
     
     if start < work_start:
         start = work_start
